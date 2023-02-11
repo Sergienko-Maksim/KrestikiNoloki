@@ -58,15 +58,19 @@ void Turn(int map[3][3], int* turn) {
 	int x, y;
 	cout << "Ходит " << (*turn == 2 ? "крестик" : "нолик") << endl;
 	cin >> x >> y;
-	while (x < 0 || x>2 || y < 0 || y>2 || map[x][y] != 0) {
+	while (x < 1 || x>3 || y < 1 || y>3 || map[y-1][x-1] != 0) {
 		cout << "Вы ввели некорректные координаты, повторите попытку" << endl;
 		cin >> x >> y;
 	}
-	map[x][y] = 3 - *turn;
+	y -= 1;
+	x -= 1;
+	map[y][x] = 3 - *turn;
 	*turn = 3 - *turn;
 }
 void Draw(int map[3][3]) {
+	cout <<  "  1 2 3" << endl;
 	for (int i = 0; i < 3; i++) {
+		cout << i + 1 << "|";
 		for (int r = 0; r < 3; r++) {
 			if (map[i][r] == 0) {
 				cout << " |";
